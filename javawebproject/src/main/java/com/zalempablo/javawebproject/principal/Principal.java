@@ -1,6 +1,7 @@
 package com.zalempablo.javawebproject.principal;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -39,5 +40,14 @@ public class Principal {
 		 list.forEach(System.out::println);
 		 list.forEach(t -> t.episodios().forEach(e -> System.out.println(e.titulo())));
 		 //list.forEach(System.out::println); isso é igual a list.forEach(t -> System.out.println(t));
+		 
+		 List<String> nomes = Arrays.asList("Pablo", "Pedro", "Michelle");
+		 nomes.stream()
+		 .sorted()
+         .limit(3)
+         .filter(n -> n.startsWith("N"))
+         .map(n -> n.toUpperCase())
+         .forEach(System.out::println);
+
 	}
 }
