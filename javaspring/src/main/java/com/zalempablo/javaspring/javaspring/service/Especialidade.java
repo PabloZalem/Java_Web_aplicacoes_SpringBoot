@@ -1,4 +1,4 @@
-package com.zalempablo.javaspring.javaspring.controller;
+package com.zalempablo.javaspring.javaspring.service;
 
 public enum Especialidade {
 	ORTOPEDIA,
