@@ -36,12 +36,14 @@ public class Medicos {
 		this.endereco = new Endereco(dados.endereco());
 	}
 	
-	public Medicos(Long id, String nome, String email, String crm, Especialidade especialidade) {
+	public Medicos(Long id, String nome, String email, String crm, 
+			Especialidade especialidade, Endereco endereco) {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.crm = crm;
 		this.especialidade = especialidade;
+		this.endereco = endereco;
 	}
 	
 	public Medicos() {
