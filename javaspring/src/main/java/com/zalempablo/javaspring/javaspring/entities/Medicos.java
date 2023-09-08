@@ -86,7 +86,6 @@ public class Medicos {
 	public Endereco getEndereco() {
 		return endereco;
 	}
-
 	
 	public String getTelefone() {
 		return telefone;

@@ -79,4 +79,11 @@ public class MedicoController {
 	var medico =  medicoRepository.getReferenceById(id);
 	medico.excluir();
 }*/
+	
+	@GetMapping("/{id}")
+	@Transactional
+	public ResponseEntity detalhar(@PathVariable Long id) {
+		var medico =  medicoRepository.getReferenceById(id);
+		return ResponseEntity.ok(new DadoDetalhamentoMedico(medico));
+	}
 }
