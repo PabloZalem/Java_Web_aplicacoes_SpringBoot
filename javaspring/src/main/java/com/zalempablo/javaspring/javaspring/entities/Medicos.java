@@ -82,6 +82,15 @@ public class Medicos {
 	public Long getId() {
 		return id;
 	}
+	
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	
+	public String getTelefone() {
+		return telefone;
+	}
 
 	public void atualizarInformacoes(@Valid DadosAtualizarMedico dados) {
 		if(dados.nome() != null) {
