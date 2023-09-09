@@ -87,4 +87,7 @@ public class MedicoController {
 		var medico =  medicoRepository.getReferenceById(id);
 		return ResponseEntity.ok(new DadoDetalhamentoMedico(medico));
 	}
+	
+	
+	
 }
