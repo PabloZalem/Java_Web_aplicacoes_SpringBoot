@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.zalempablo.javaspring.javaspring.entities.Usuario;
+import com.zalempablo.javaspring.javaspring.security.TokenService;
 import com.zalempablo.javaspring.javaspring.service.DadosAutenticacao;
+import com.zalempablo.javaspring.javaspring.service.DadosTokenJWT;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -21,11 +24,16 @@ public class AutenticacaoController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 	
+	@Autowired
+	private TokenService tokenService;
+	
 	@PostMapping
-	@Transactional
 	public ResponseEntity efetuarLogin(@RequestBody @Valid DadosAutenticacao dadosAutenticacao) {
-		var token = new UsernamePasswordAuthenticationToken(dadosAutenticacao.login(), dadosAutenticacao.senha());
-		var authentication = authenticationManager.authenticate(token);		
-		return ResponseEntity.ok().build();
+		var authenticationToken = new UsernamePasswordAuthenticationToken(dadosAutenticacao.login(), dadosAutenticacao.senha());
+		var authentication = authenticationManager.authenticate(authenticationToken);		
+		
+		var tokenJWT = tokenService.gerarToken((Usuario) authentication.getPrincipal());
+		
+		return ResponseEntity.ok(new DadosTokenJWT(tokenJWT));
 	}
 }
