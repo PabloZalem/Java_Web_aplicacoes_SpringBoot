@@ -88,6 +88,10 @@ public class MedicoController {
 		return ResponseEntity.ok(new DadoDetalhamentoMedico(medico));
 	}
 	
-	
-	
+	/*@GetMapping("/{id}")
+	@Secured("ROLE_ADMIN")
+	public ResponseEntity detalhar(@PathVariable Long id) {
+    var medico = repository.getReferenceById(id);
+    return ResponseEntity.ok(new DadosDetalhamentoMedico(medico));
+}*/
 }
