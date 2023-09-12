@@ -16,8 +16,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.zalempablo.javaspring.javaspring.entities.Medicos;
 import com.zalempablo.javaspring.javaspring.repository.MedicoRepository;
-import com.zalempablo.javaspring.javaspring.service.DadoDetalhamentoMedico;
-import com.zalempablo.javaspring.javaspring.service.DadosAtualizarMedico;
+import com.zalempablo.javaspring.javaspring.service.DadosDetalhamentoMedico;
+import com.zalempablo.javaspring.javaspring.service.DadosAtualizacaoMedico;
 import com.zalempablo.javaspring.javaspring.service.DadosCadastroMedico;
 import com.zalempablo.javaspring.javaspring.service.DadosListagemMedico;
 
@@ -41,7 +41,7 @@ public class MedicoController {
 		
 		var uri = uriComponentsBuilder.path("/medicos/{id}").buildAndExpand(medico.getId()).toUri();
 		
-		return ResponseEntity.created(uri).body(new DadoDetalhamentoMedico(medico));
+		return ResponseEntity.created(uri).body(new DadosDetalhamentoMedico(medico));
 	}
 	/*public void cadastrar(@RequestBody @Valid DadosCadastroMedico dados) {
 		medicoRepository.save(new Medicos(dados));
@@ -58,10 +58,10 @@ public class MedicoController {
 	
 	@PutMapping
 	@Transactional
-	public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizarMedico dados) {
+	public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizacaoMedico dados) {
 		var medico = medicoRepository.getReferenceById(dados.id());
 		medico.atualizarInformacoes(dados);		
-		return ResponseEntity.ok(new DadoDetalhamentoMedico(medico));
+		return ResponseEntity.ok(new DadosDetalhamentoMedico(medico));
 	}
 	/*public void atualizar(@RequestBody @Valid DadosAtualizarMedico dados) {
 		var medico = medicoRepository.getReferenceById(dados.id());
@@ -85,7 +85,7 @@ public class MedicoController {
 	@Transactional
 	public ResponseEntity detalhar(@PathVariable Long id) {
 		var medico =  medicoRepository.getReferenceById(id);
-		return ResponseEntity.ok(new DadoDetalhamentoMedico(medico));
+		return ResponseEntity.ok(new DadosDetalhamentoMedico(medico));
 	}
 	
 	/*@GetMapping("/{id}")

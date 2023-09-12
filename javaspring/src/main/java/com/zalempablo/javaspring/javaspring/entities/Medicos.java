@@ -1,6 +1,6 @@
 package com.zalempablo.javaspring.javaspring.entities;
 
-import com.zalempablo.javaspring.javaspring.service.DadosAtualizarMedico;
+import com.zalempablo.javaspring.javaspring.service.DadosAtualizacaoMedico;
 import com.zalempablo.javaspring.javaspring.service.DadosCadastroMedico;
 import com.zalempablo.javaspring.javaspring.service.Especialidade;
 
@@ -93,7 +93,7 @@ public class Medicos {
 		return telefone;
 	}
 
-	public void atualizarInformacoes(@Valid DadosAtualizarMedico dados) {
+	public void atualizarInformacoes(@Valid DadosAtualizacaoMedico dados) {
 		if(dados.nome() != null) {
 			this.nome = dados.nome();	
 		}
