@@ -3,7 +3,7 @@ REPLACE INTO usuarios (id, login, senha)
 VALUES (
         1,
         "thiago@hotmail.com",
-        "$2a$12$n8xkkELCmkxWUIRUMyMJTeJTpqnBA2Bn.cbqn56tg4QAqmHEhxOje"
+        "$2a$12$G38EzNaEJfwnNL8AVcrLc.hX/HWz6CRN3fwySIX1tt9tZvDu1byBi"
     );
 REPLACE INTO usuarios (id, login, senha)
 VALUES (
