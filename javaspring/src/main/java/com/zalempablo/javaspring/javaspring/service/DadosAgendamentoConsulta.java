@@ -7,6 +7,8 @@ import jakarta.validation.constraints.NotNull;
 
 public record DadosAgendamentoConsulta(	Long id,
 										@NotNull Long idPaciente,
-										@NotNull @Future LocalDateTime data) {
+										@NotNull Long idMedico,
+										@NotNull @Future LocalDateTime data,
+										Especialidade especialidade) {
 
 }

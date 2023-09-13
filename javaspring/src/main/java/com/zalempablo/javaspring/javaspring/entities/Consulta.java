@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 
 @Table(name = "consultas")
 @Entity(name = "Consulta")
-@Getter
+//@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -29,11 +29,11 @@ public class Consulta {
 	private Long id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "medico_id")
+	@JoinColumn(name = "medicos")
 	private Medicos medicos;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "paciente_id")
+	@JoinColumn(name = "paciente")
 	private Paciente paciente;
 
 	private LocalDateTime data;
