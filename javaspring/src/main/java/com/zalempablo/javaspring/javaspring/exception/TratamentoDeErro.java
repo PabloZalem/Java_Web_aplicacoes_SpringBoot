@@ -32,6 +32,11 @@ public class TratamentoDeErro {
 		return ResponseEntity.badRequest().body(erros.stream().map(DadosErroDeValidaco::new).toList());
 	}
 	
+	@ExceptionHandler(ValidacaoException.class)
+	public ResponseEntity tratarErroDaRegraDeNegocio(ValidacaoException ex) {
+		return ResponseEntity.badRequest().body(ex.getMessage());
+	}
+	
 	@ExceptionHandler(RuntimeException.class)
     public ResponseEntity<Object> tratarErro401(RuntimeException ex, WebRequest request) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)

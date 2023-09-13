@@ -1,7 +1,6 @@
 package com.zalempablo.javaspring.javaspring.repository;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,7 +23,7 @@ public interface MedicoRepository extends JpaRepository<Medicos, Long>{
             m.especialidade = :especialidade
             and
             m.id not in(
-                    select c.medico.id from Consulta c
+                    select c.medicos.id from Consulta c
                     where
                     c.data = :data
             )
