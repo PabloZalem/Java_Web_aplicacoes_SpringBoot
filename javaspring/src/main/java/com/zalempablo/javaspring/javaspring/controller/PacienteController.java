@@ -21,11 +21,13 @@ import com.zalempablo.javaspring.javaspring.service.DadosCadastroPaciente;
 import com.zalempablo.javaspring.javaspring.service.DadosDetalhamentoPaciente;
 import com.zalempablo.javaspring.javaspring.service.DadosListagemPaciente;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("pacientes")
+@SecurityRequirement(name="bearer-key")
 public class PacienteController {
 
     @Autowired

@@ -11,11 +11,13 @@ import com.zalempablo.javaspring.javaspring.service.AgendaDeConsulta;
 import com.zalempablo.javaspring.javaspring.service.DadosAgendamentoConsulta;
 import com.zalempablo.javaspring.javaspring.service.DadosDetalhamentoConsulta;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("consultas")
+@SecurityRequirement(name="bearer-key")
 public class ConsultaController {
 	
 	@Autowired

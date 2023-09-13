@@ -33,10 +33,10 @@ public interface MedicoRepository extends JpaRepository<Medicos, Long>{
 	Medicos escolherMedicoAleatorioLivreNaData(Especialidade especialidade, LocalDateTime data);
 
 	@Query("""
-			select n.ativo
+			select m.ativo
 			from Medico m
 			where 
-			n.id = :id
+			m.id = :id
 			""")
 	Boolean findAtivoById(Long id);
 }
