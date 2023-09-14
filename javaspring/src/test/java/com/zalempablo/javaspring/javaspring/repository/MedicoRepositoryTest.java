@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.TemporalAdjusters;
 
+import org.aspectj.lang.annotation.Before;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,7 @@ import com.zalempablo.javaspring.javaspring.service.Especialidade;
 @ActiveProfiles("test")
 public class MedicoRepositoryTest {
 	
+	@Autowired
 	private MedicoRepository medicoRepository;
 	
 	@Autowired

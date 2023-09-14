@@ -9,6 +9,7 @@ import com.zalempablo.javaspring.javaspring.service.DadosAgendamentoConsulta;
 
 @Component
 public class ValidadorMedicoAtivo implements ValidadorAgendamentoConsulta{
+	
 	@Autowired
 	private MedicoRepository medicoRepository;
 	
