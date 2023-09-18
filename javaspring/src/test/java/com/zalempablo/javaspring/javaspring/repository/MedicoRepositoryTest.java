@@ -1,14 +1,13 @@
 package com.zalempablo.javaspring.javaspring.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.TemporalAdjusters;
 
-import org.aspectj.lang.annotation.Before;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +16,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ActiveProfiles;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.zalempablo.javaspring.javaspring.entities.Consulta;
 import com.zalempablo.javaspring.javaspring.entities.Medicos;
 import com.zalempablo.javaspring.javaspring.entities.Paciente;
@@ -66,7 +66,106 @@ public class MedicoRepositoryTest {
 	    assertThat(medicoLivre).isEqualTo(medico);
 	}
 	
+    @Test
+    void testFindAtivoById_MedicoAtivo() {
+        // Cenário: Médico com ID ativo
+        var medico = cadastrarMedico("Medico", "medico@voll.med", "123456", Especialidade.CARDIOLOGIA);
 
+        // Ação
+        var ativo = medicoRepository.findAtivoById(medico.getId());
+
+        // Verificação
+        assertThat(ativo).isTrue();
+    }
+	
+    @Test
+    void testFindAtivoById_MedicoNaoAtivo() {
+        // Cenário: Médico com ID não ativo
+        var medico = cadastrarMedico("Medico", "medico@voll.med", "123456", Especialidade.CARDIOLOGIA);
+        medico.setAtivo(false);
+        testEntityManager.persistAndFlush(medico);
+
+        // Ação
+        var ativo = medicoRepository.findAtivoById(medico.getId());
+
+        // Verificação
+        assertThat(ativo).isFalse();
+    }
+    
+    @Test
+    void testFindAtivoById_MedicoNaoExiste() {
+        // Cenário: Médico com ID não existente
+        var idNaoExistente = 999L;
+
+        // Ação
+        var ativo = medicoRepository.findAtivoById(idNaoExistente);
+
+        // Verificação
+        assertThat(ativo).isNull();
+    }
+    
+    //@Test
+    //@JsonIgnore
+    void testEscolherMedicoAleatorioLivreNaData_EspecialidadeNula() {
+        // Cenário: Especialidade nula
+        var proximaSegundaAs10 = LocalDate.now()
+                .with(TemporalAdjusters.next(DayOfWeek.MONDAY))
+                .atTime(10,0);
+
+        // Ação e Verificação
+        assertThrows(IllegalArgumentException.class, () -> {
+            medicoRepository.escolherMedicoAleatorioLivreNaData(null, proximaSegundaAs10);
+        });
+    }
+    
+    //@Test
+    //@JsonIgnore
+    void testEscolherMedicoAleatorioLivreNaData_DataNula() {
+        // Cenário: Data nula
+        var especialidade = Especialidade.CARDIOLOGIA;
+
+        // Ação e Verificação
+        assertThrows(IllegalArgumentException.class, () -> {
+            medicoRepository.escolherMedicoAleatorioLivreNaData(especialidade, null);
+        });
+    }
+    
+    @Test
+    void testEscolherMedicoAleatorioLivreNaData_DataSemCorrespondencia() {
+        // Cenário: Data sem correspondência
+        var proximaSegundaAs10 = LocalDate.now()
+                .with(TemporalAdjusters.next(DayOfWeek.MONDAY))
+                .atTime(10, 0);
+        var medico = cadastrarMedico("Medico", "medico@voll.med", "123456", Especialidade.CARDIOLOGIA);
+
+        // Cenário: Consulta em uma data diferente
+        var outraData = proximaSegundaAs10.plusDays(1);
+
+        // Ação
+        var medicoLivre = medicoRepository.escolherMedicoAleatorioLivreNaData(Especialidade.CARDIOLOGIA, outraData);
+
+        // Verificação
+        assertThat(medicoLivre).isEqualTo(medico);
+    }
+    
+    @Test
+    void testEscolherMedicoAleatorioLivreNaData_MultiplosMedicosDisponiveis() {
+        // Cenário: Vários médicos disponíveis na data
+        var proximaSegundaAs10 = LocalDate.now()
+                .with(TemporalAdjusters.next(DayOfWeek.MONDAY))
+                .atTime(10, 0);
+        var medico1 = cadastrarMedico("Medico1", "medico1@voll.med", "123456", Especialidade.CARDIOLOGIA);
+        var medico2 = cadastrarMedico("Medico2", "medico2@voll.med", "123457", Especialidade.CARDIOLOGIA);
+
+        // Ação
+        var medicoLivre = medicoRepository.escolherMedicoAleatorioLivreNaData(Especialidade.CARDIOLOGIA, proximaSegundaAs10);
+
+        // Verificação
+        assertThat(medicoLivre).isIn(medico1, medico2);
+    }
+    
+    
+    
 	private void cadastrarConsulta(Medicos medico, Paciente paciente, LocalDateTime data) {
 		testEntityManager.persist(new Consulta(null, medico, paciente, data));
 	}

@@ -93,6 +93,10 @@ public class Medicos {
 		return telefone;
 	}
 
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
+
 	public void atualizarInformacoes(@Valid DadosAtualizacaoMedico dados) {
 		if(dados.nome() != null) {
 			this.nome = dados.nome();	
