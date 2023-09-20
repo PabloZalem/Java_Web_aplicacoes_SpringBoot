@@ -10,8 +10,7 @@ import com.zalempablo.javaspring.javaspring.service.DadosAgendamentoConsulta;
 @Component
 public class ValidadorMedicoComOutraConsultaNoMesmoHorario implements ValidadorAgendamentoConsulta{
 
-	@Autowired
-	private ConsultaRepository consultaRepository;
+	@Autowired ConsultaRepository consultaRepository;
 	
 	public void validar(DadosAgendamentoConsulta dadosAgendamentoConsulta) {
 			var medicoPossuiOutraConsultaNoMesmoHorario = consultaRepository.existsByMedicosIdAndData(dadosAgendamentoConsulta.idMedico(), dadosAgendamentoConsulta.data());

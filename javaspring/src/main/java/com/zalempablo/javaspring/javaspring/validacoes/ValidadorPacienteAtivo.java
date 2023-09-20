@@ -10,13 +10,16 @@ import com.zalempablo.javaspring.javaspring.service.DadosAgendamentoConsulta;
 @Component
 public class ValidadorPacienteAtivo implements ValidadorAgendamentoConsulta{
 
-	@Autowired
-	private PacienteRepository pacienteRepository;
+	@Autowired PacienteRepository pacienteRepository;
 	
 	public void validar(DadosAgendamentoConsulta dadosAgendamentoConsulta) {
 		var pacienteEstaAtivo = pacienteRepository.findAtivoById(dadosAgendamentoConsulta.idPaciente());
 		if(!pacienteEstaAtivo) {
 			throw new ValidacaoException("Consulta não pode ser agendada com paciente excluído");
 		}
+	}
+
+	public void setPacienteRepository(PacienteRepository pacienteRepository2) {
+			this.pacienteRepository = pacienteRepository2;
 	}
 }

@@ -16,17 +16,31 @@ import com.zalempablo.javaspring.javaspring.validacoes.ValidadorAgendamentoConsu
 @Service
 public class AgendaDeConsulta {
 
-	@Autowired
+	@Autowired 
 	private ConsultaRepository consultaRepository;
 
-	@Autowired
+	@Autowired 
 	private MedicoRepository medicoRepository;
 
-	@Autowired
+	@Autowired 
 	private PacienteRepository pacienteRepository;
 	
-	@Autowired
+	@Autowired 
 	private List<ValidadorAgendamentoConsulta> validadores;
+	
+	@Autowired
+	public AgendaDeConsulta() {
+		// Construtor vazio
+	}
+
+	// Método para configurar as dependências manualmente
+	public void configurarDependencias(ConsultaRepository consultaRepository, MedicoRepository medicoRepository,
+			PacienteRepository pacienteRepository, List<ValidadorAgendamentoConsulta> validadores) {
+		this.consultaRepository = consultaRepository;
+		this.medicoRepository = medicoRepository;
+		this.pacienteRepository = pacienteRepository;
+		this.validadores = validadores;
+	}
 	
 	//pode ser necessário utilizar findById
 	public DadosDetalhamentoConsulta agendar(DadosAgendamentoConsulta dadosAgendamentoConsulta) {

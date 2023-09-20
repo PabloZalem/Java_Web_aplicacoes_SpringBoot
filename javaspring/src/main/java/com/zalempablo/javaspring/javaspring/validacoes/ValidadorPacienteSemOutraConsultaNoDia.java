@@ -12,6 +12,10 @@ public class ValidadorPacienteSemOutraConsultaNoDia implements ValidadorAgendame
 	@Autowired
 	private ConsultaRepository consultaRepository;
 	
+	public ValidadorPacienteSemOutraConsultaNoDia(ConsultaRepository consultaRepository2) {
+		this.consultaRepository = consultaRepository2;
+	}
+
 	public void validar(DadosAgendamentoConsulta dadosAgendamentoConsulta) {
 		var primeiroHorario = dadosAgendamentoConsulta.data().withHour(7);
 		var ultimoHorario = dadosAgendamentoConsulta.data().withHour(18);
