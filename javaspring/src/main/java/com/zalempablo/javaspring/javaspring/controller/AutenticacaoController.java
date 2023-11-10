@@ -20,14 +20,14 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/login")
 public class AutenticacaoController {
-	
+	//Dependency Inversion Principle (Princípio da Inversão de Dependência):A classe depende de interfaces (AuthenticationManager e TokenService), seguindo o DIP.
 	@Autowired
 	private AuthenticationManager authenticationManager;
 	
 	@Autowired
 	private TokenService tokenService;
 	
-
+	//Single Responsibility Principle (Princípio da Responsabilidade Única):A classe parece ter uma única responsabilidade: lidar com a autenticação do usuário.
 	@PostMapping
 	public ResponseEntity efetuarLogin(@RequestBody @Valid DadosAutenticacao dadosAutenticacao) {
 		try {

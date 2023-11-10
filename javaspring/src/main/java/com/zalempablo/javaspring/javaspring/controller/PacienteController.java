@@ -30,9 +30,17 @@ import jakarta.validation.Valid;
 @SecurityRequirement(name="bearer-key")
 public class PacienteController {
 
+	/*
+	 	Dependency Inversion Principle (Princípio da Inversão de Dependência):
+		A classe depende de uma abstração (PacienteRepository), e essa dependência é injetada por meio de injeção de dependência.
+	 */
     @Autowired
     private PacienteRepository repository;
 
+    /*
+     	Single Responsibility Principle (Princípio da Responsabilidade Única):
+		O método cadastrar parece ter uma única responsabilidade, que é cadastrar um novo paciente.
+     */
     @PostMapping
     @Transactional
     public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroPaciente dados, UriComponentsBuilder uriBuilder) {
@@ -49,6 +57,11 @@ public class PacienteController {
         return ResponseEntity.ok(page);
     }
 
+    
+    /*
+     	Single Responsibility Principle (Princípio da Responsabilidade Única):
+		O método cadastrar parece ter uma única responsabilidade, que é cadastrar um novo paciente.
+     */
     @PutMapping
     @Transactional
     public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizacaoPaciente dados) {

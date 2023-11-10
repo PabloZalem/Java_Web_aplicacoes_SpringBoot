@@ -6,7 +6,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class FakeAuthService {
-
+	
+	/*
+	 	Princípio da Responsabilidade Única (Single Responsibility Principle - SRP):
+	 	 Este método está envolvido em gerar um token com base em um par de nome de usuário e senha
+	 */
     public String generateToken(String username, String password) {
         // Verificar se o login e a senha são válidos (coloque sua lógica de autenticação aqui)
         if ("ana.souza@voll.med".equals(username) && "123456".equals(password)) {

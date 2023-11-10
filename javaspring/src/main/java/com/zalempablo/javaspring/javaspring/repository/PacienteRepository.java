@@ -9,8 +9,7 @@ import com.zalempablo.javaspring.javaspring.entities.Paciente;
 
 public interface PacienteRepository extends JpaRepository<Paciente, Long> {
     Page<Paciente> findAllByAtivoTrue(Pageable paginacao);
-
-    
+   
     @Query("""
     		select p.ativo
 			from Paciente p

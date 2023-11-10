@@ -20,3 +20,18 @@ public class ValidadorDeHorarioAntecedencia implements ValidadorAgendamentoConsu
 		}
 	}
 }
+
+/*
+	Responsabilidade Única (SRP):
+	O ValidadorDeHorarioAntecedencia parece ter uma única responsabilidade, 
+	que é validar se a consulta foi agendada com antecedência de 30 minutos. 
+	Isso está alinhado com o princípio da SRP, que sugere que uma classe deve 
+	ter apenas um motivo para mudar.
+
+	Inversão de Dependência (DIP):
+	O uso de interfaces, como ValidadorAgendamentoConsulta, sugere a aplicação 
+	do princípio da inversão de dependência. A classe ValidadorDeHorarioAntecedencia 
+	depende de uma abstração (ValidadorAgendamentoConsulta), e não de implementações 
+	concretas. Isso facilita a extensibilidade do sistema, pois novos validadores 
+	podem ser adicionados sem modificar a classe que os utiliza.
+*/

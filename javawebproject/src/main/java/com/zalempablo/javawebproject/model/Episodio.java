@@ -1,9 +1,7 @@
 package com.zalempablo.javawebproject.model;
 
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.Date;
 
 public class Episodio {
 	private Integer temporada;

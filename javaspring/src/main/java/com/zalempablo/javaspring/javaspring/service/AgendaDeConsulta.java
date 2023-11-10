@@ -16,18 +16,23 @@ import com.zalempablo.javaspring.javaspring.validacoes.ValidadorAgendamentoConsu
 @Service
 public class AgendaDeConsulta {
 
-	@Autowired 
+	/*
+	 * Princípio da Inversão de Dependência (Dependency Inversion Principle - DIP):
+	 * injeção de dependência é utilizada por meio da anotação @Autowired para
+	 * fornecer as dependências necessárias à classe.
+	 */
+	@Autowired
 	private ConsultaRepository consultaRepository;
 
-	@Autowired 
+	@Autowired
 	private MedicoRepository medicoRepository;
 
-	@Autowired 
+	@Autowired
 	private PacienteRepository pacienteRepository;
-	
-	@Autowired 
+
+	@Autowired
 	private List<ValidadorAgendamentoConsulta> validadores;
-	
+
 	@Autowired
 	public AgendaDeConsulta() {
 		// Construtor vazio
@@ -41,8 +46,12 @@ public class AgendaDeConsulta {
 		this.pacienteRepository = pacienteRepository;
 		this.validadores = validadores;
 	}
-	
-	//pode ser necessário utilizar findById
+
+	// pode ser necessário utilizar findById
+	/*
+	 * Princípio da Responsabilidade Única (Single Responsibility Principle - SRP):
+	 	
+	 */
 	public DadosDetalhamentoConsulta agendar(DadosAgendamentoConsulta dadosAgendamentoConsulta) {
 		if (!pacienteRepository.existsById(dadosAgendamentoConsulta.idPaciente())) {
 			throw new ValidacaoException("id do paciente informado nao existe");
@@ -52,7 +61,7 @@ public class AgendaDeConsulta {
 				&& !medicoRepository.existsById(dadosAgendamentoConsulta.idMedico())) {
 			throw new ValidacaoException("id do medico informado nao existe");
 		}
-		
+
 		validadores.forEach(v -> v.validar(dadosAgendamentoConsulta));
 
 		var paciente = pacienteRepository.getReferenceById(dadosAgendamentoConsulta.idPaciente());
@@ -60,10 +69,10 @@ public class AgendaDeConsulta {
 		if (medico == null) {
 			throw new ValidacaoException("Não existe médico disponível nessa data");
 		}
-		
+
 		var consulta = new Consulta(null, medico, paciente, dadosAgendamentoConsulta.data());
 		consultaRepository.save(consulta);
-		
+
 		return new DadosDetalhamentoConsulta(consulta);
 	}
 

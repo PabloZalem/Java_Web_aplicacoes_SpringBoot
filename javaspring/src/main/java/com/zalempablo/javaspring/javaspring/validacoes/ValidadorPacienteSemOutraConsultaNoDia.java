@@ -26,3 +26,21 @@ public class ValidadorPacienteSemOutraConsultaNoDia implements ValidadorAgendame
 		}
 	}
 }
+
+/*
+Inversão de Dependência (DIP):
+	A classe utiliza injeção de dependência no construtor ao receber uma 
+	instância de ConsultaRepository. Isso está de acordo com o princípio da 
+	inversão de dependência, pois a classe depende de uma abstração 
+	(ConsultaRepository) em vez de criar diretamente a dependência.
+
+Responsabilidade Única (SRP):
+	A classe tem a responsabilidade de validar se um paciente possui outra consulta 
+	agendada no mesmo dia. Parece estar alinhada com o princípio da responsabilidade 
+	única.
+	
+Aberto/Fechado (OCP):
+	Semelhante aos casos anteriores, a classe não parece estar diretamente relacionada 
+	ao princípio Aberto/Fechado. A estrutura da classe permite a adição de novas 
+	regras de validação sem modificar a classe existente, favorecendo a extensibilidade
+*/

@@ -8,5 +8,4 @@ import com.zalempablo.javaspring.javaspring.entities.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
 
 	UserDetails findByLogin(String username);
-
 }

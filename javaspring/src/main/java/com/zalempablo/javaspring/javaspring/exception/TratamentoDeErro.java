@@ -74,3 +74,10 @@ public class TratamentoDeErro {
         }
     }
 }
+
+/*
+ 	Princípio da Responsabilidade Única (Single Responsibility Principle - SRP):
+ 	Cada método dentro da classe trata de um tipo específico de exceção. 
+ 	
+ 	
+ */

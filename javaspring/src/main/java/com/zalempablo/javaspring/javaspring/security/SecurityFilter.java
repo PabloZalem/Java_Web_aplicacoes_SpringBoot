@@ -5,7 +5,6 @@ import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -47,6 +46,29 @@ public class SecurityFilter extends OncePerRequestFilter{
 	    }
 
 	    return null;
-	}
-	
+	}	
 }
+
+/*
+ 	S - Single Responsibility Principle (Princípio da Responsabilidade Única):
+	A classe parece ter uma única responsabilidade, que é filtrar as solicitações e 
+	realizar a autenticação com base no token JWT. Isso está alinhado com o 
+	princípio S do SOLID.
+	
+	O - Open/Closed Principle (Princípio Aberto/Fechado):
+	A classe é uma subclasse de OncePerRequestFilter, Ela parece estar fechada 
+	para modificação (não há extensões ou alterações importantes no código-fonte 
+	fornecido), mas aberta para extensões (pode ser estendida para adicionar 
+	mais funcionalidades). Portanto, em geral, parece estar alinhada com o princípio O.
+	
+	L - Liskov Substitution Principle (Princípio da Substituição de Liskov):
+	A classe parece seguir esse princípio, pois herda de OncePerRequestFilter 
+	e substitui o método doFilterInternal. Isso é consistente com o princípio de 
+	substituição de Liskov.
+	
+	D - Dependency Inversion Principle (Princípio da Inversão de Dependência):
+	A classe usa injeção de dependência para obter instâncias de TokenService 
+	e UsuarioRepository. Isso é consistente com o princípio da inversão de 
+	dependência, pois a classe depende de abstrações (TokenService e 
+	UsuarioRepository) em vez de implementações concretas.
+ */
