@@ -40,13 +40,3 @@ public interface MedicoRepository extends JpaRepository<Medicos, Long>{
 			""")
 	Boolean findAtivoById(Long id);
 }
-/* Princípio da Responsabilidade Única (Single Responsibility Principle - SRP):
-	A interface MedicoRepository tem a responsabilidade de definir métodos de acesso 
-	a dados relacionados aos médicos. Essa responsabilidade única está alinhada 
-	com o SRP.
- 	
- 	Princípio Aberto/Fechado (Open/Closed Principle - OCP):
-	A interface MedicoRepository é uma extensão da interface JpaRepository e 
-	define métodos específicos para acesso a dados relacionados aos médicos. 
-	Ela é fechada para modificação, mas aberta para extensão, seguindo o princípio OCP.
- */

@@ -21,16 +21,3 @@ public class ValidadorDeHorarioFuncionamentoClinica implements ValidadorAgendame
 		}
 	}
 }
-
-/*
-	Responsabilidade Única (SRP):
-	A classe parece ter uma única responsabilidade, que é validar se a 
-	consulta está dentro do horário de funcionamento da clínica. Essa responsabilidade 
-	única está alinhada com o princípio da SRP.
-
-	Inversão de Dependência (DIP):
-	Assim como na classe anterior, esta classe implementa a interface 
-	ValidadorAgendamentoConsulta, sugerindo que ela depende de abstrações em vez de 
-	implementações concretas. Isso promove a flexibilidade e a extensibilidade do 
-	sistema.
-*/

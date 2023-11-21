@@ -30,18 +30,11 @@ import jakarta.validation.Valid;
 @SecurityRequirement(name="bearer-key")
 public class MedicoController {
 	
-	/*
-	 Dependency Inversion Principle (Princípio da Inversão de Dependência):
-		A classe depende de uma abstração (MedicoRepository), e essa dependência é injetada por meio de injeção de dependência.
-	 */
+	
 	@Autowired
 	private MedicoRepository medicoRepository;
 	
 	
-	/*
-	 Single Responsibility Principle (Princípio da Responsabilidade Única):
-		O método cadastrar parece ter uma única responsabilidade, que é cadastrar um novo médico.
-	 */
 	@PostMapping
 	@Transactional
 	public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroMedico dados, 

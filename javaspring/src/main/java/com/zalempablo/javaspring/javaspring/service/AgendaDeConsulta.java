@@ -17,9 +17,9 @@ import com.zalempablo.javaspring.javaspring.validacoes.ValidadorAgendamentoConsu
 public class AgendaDeConsulta {
 
 	/*
-	 * Princípio da Inversão de Dependência (Dependency Inversion Principle - DIP):
-	 * injeção de dependência é utilizada por meio da anotação @Autowired para
-	 * fornecer as dependências necessárias à classe.
+	  Princípio da Inversão de Dependência (Dependency Inversion Principle - DIP):
+	  injeção de dependência é utilizada por meio da anotação @Autowired para
+	  fornecer as dependências necessárias à classe.
 	 */
 	@Autowired
 	private ConsultaRepository consultaRepository;

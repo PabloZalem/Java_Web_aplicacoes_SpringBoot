@@ -11,3 +11,9 @@ VALUES (
         "ana.souza@voll.med",
         "$2a$12$ajvckJq02fF/p7J2teBuOOBgZ8ZwMMZbHJjLInmbi71fVd.Fhs6F."
     );
+REPLACE INTO usuarios (id, login, senha)
+VALUES (
+        3,
+        "test.test@voll.med",
+        "$2a$12$ajvckJq02fF/p7J2teBuOOBgZ8ZwMMZbHJjLInmbi71fVd.Fhs6F."
+    );    
